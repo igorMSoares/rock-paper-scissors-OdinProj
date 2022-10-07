@@ -1,9 +1,35 @@
-const getComputerChoice = () => {
+/** Creates an array with n times (10 by default) each option, in random order */
+const shuffleOptions = (n = 10) => {
   const options = ['rock', 'paper', 'scissors'];
+  let temp = [...options];
+  const shuffled = [];
+  let idx = -1;
 
-  const choice = Math.round(Math.random() * 2);
-  return options[choice];
+  for (let i = 0; i < 3 * n; i++) {
+    idx = Math.round(Math.random() * (temp.length - 1));
+    shuffled[i] = temp[idx];
+    temp.splice(idx, 1);
+
+    if (temp.length === 0) temp = [...options];
+  }
+
+  return shuffled;
 };
+
+/** Generates and memoizes the shuffled options
+ * returns a function which will choose a random option from the shuffled array
+ */
+const chooseFromShuffled = () => {
+  const options = shuffleOptions();
+
+  return () => {
+    const choice = Math.round(Math.random() * (options.length - 1));
+
+    return options[choice];
+  };
+};
+
+const getComputerChoice = chooseFromShuffled();
 
 const playRound = (playerChoice, computerChoice) => {
   const beatedBy = {
