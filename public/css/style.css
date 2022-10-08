@@ -5,7 +5,7 @@
   --button-blue-darker: hsl(194, 75%, 20%);
   --deep-dark-blue: hsl(194, 60%, 16%);
   --button-green: #3ecc66;
-  --button-red: #f81111;
+  --button-red: hsl(0, 89%, 67%, 70%);
 }
 
 @keyframes fadeIn {
@@ -111,6 +111,8 @@ input {
   border: 0.125rem solid var(--button-blue-darker);
   border-radius: 0.5rem;
   cursor: pointer;
+  font-size: 1rem;
+  transition: 300ms background ease;
 }
 
 button {
@@ -130,6 +132,12 @@ input:hover,
 button:hover {
   box-shadow: 0 0 0.5rem var(--deep-dark-blue);
   transition: 100ms all ease-in-out;
+}
+
+.blink {
+  /* animation: 200ms fadeIn ease-in-out; */
+  transition: 300ms all ease;
+  background: var(--button-red);
 }
 
 main h2 {
@@ -201,11 +209,11 @@ button:active {
 }
 
 #console {
-  padding: 2rem;
+  padding: clamp(0.5rem, 5%, 2rem);
   font-family: 'Silkscreen', Arial, Helvetica, sans-serif;
   color: var(--deep-dark-blue);
-  font-size: 1.25rem;
-  margin: 1.5rem 1.5rem;
+  font-size: 1.5rem;
+  margin: 1.5rem clamp(0rem, 5%, 1.5rem);
   border: 1px dotted hsl(194, 75%, 10%, 50%);
   border-radius: 1rem;
   box-shadow: 0rem 0rem 1.5rem hsl(0, 0%, 83%, 80%);

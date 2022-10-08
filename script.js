@@ -94,3 +94,28 @@ const game = () => {
 
   return score;
 };
+
+document.querySelector('#start').addEventListener('click', _ => {
+  const nameInput = document.querySelector('#player-name-input');
+  const playerName = nameInput.value;
+
+  if (!playerName) {
+    nameInput.classList.add('blink');
+    window.setTimeout(() => {
+      nameInput.setAttribute('placeholder', '');
+    }, 200);
+
+    window.setTimeout(() => {
+      nameInput.classList.remove('blink');
+      nameInput.setAttribute('placeholder', 'Type in your name');
+    }, 400);
+  } else {
+    document.querySelectorAll('.player-name').forEach(el => {
+      el.textContent = playerName;
+    });
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+    document.querySelector('#welcome').classList.toggle('hidden');
+    hiddenElements.forEach(el => el.classList.toggle('hidden'));
+  }
+});

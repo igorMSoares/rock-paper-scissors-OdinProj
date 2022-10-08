@@ -17,18 +17,19 @@
       <section id="welcome">
         <p>Welcome to<br />Rock Paper Scissors online 😎</p>
         <h1>Let's Play!</h1>
+        <p id="msg-area"></p>
         <p id="input-wrapper">
           <input
             type="text"
             name="player"
-            id="player-name"
+            id="player-name-input"
             placeholder="Type in your name"
           />
           <button id="start">Start</button>
         </p>
       </section>
       <section class="hidden">
-        <h2>Liz</h2>
+        <h2 class="player-name"></h2>
         <div id="player-buttons">
           <span class="button-wrapper"
             ><img
@@ -53,8 +54,8 @@
           /></span>
         </div>
         <div id="console">
-          <p>You Lose :(</p>
-          <p>Rock beats Scissors</p>
+          <p>Choose your weapon!</p>
+          <p>Rock, Paper or Scissors?</p>
         </div>
         <h2>Computer</h2>
         <div id="computer-buttons">
@@ -84,7 +85,9 @@
       <section id="score" class="hidden">
         <h2>Score</h2>
         <p id="computer-score">Computer: <span class="total-score">0</span></p>
-        <p id="player-score">You: <span class="total-score">0</span></p>
+        <p id="player-score">
+          <span class="player-name"></span>: <span class="total-score">0</span>
+        </p>
       </section>
     </main>
   </body>
