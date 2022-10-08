@@ -1,3 +1,9 @@
+:root {
+  --button-blue: #12637c;
+  --button-blue-darker: hsl(194, 75%, 20%);
+  --button-green: #3ecc66;
+  --button-red: #f81111;
+}
 *,
 *::after,
 *::before {
@@ -11,4 +17,82 @@ body {
   min-height: 100vh;
   font-family: 'Inconsolata', Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1em;
+}
+
+body {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0 auto;
+  padding: 2rem;
+  width: fit-content;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+main {
+  text-align: center;
+}
+
+main h1 {
+  margin-bottom: 1em;
+}
+
+.button {
+  box-shadow: 0.25rem 0.25rem 0.5rem lightgrey;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+#computer-buttons,
+#player-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+#console {
+  padding: 2rem;
+  font-family: 'Silkscreen';
+  font-size: 1.25rem;
+  margin: 1.5rem 1.5rem;
+  border: 1px dotted hsl(194, 75%, 10%, 50%);
+  border-radius: 1rem;
+  box-shadow: 0rem 0rem 1.5rem hsl(0, 0%, 83%, 80%);
+}
+
+aside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5.5rem;
+}
+
+#score h2 {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+#score {
+  border: 0.125rem solid var(--button-blue);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  align-self: flex-start;
+  max-width: max-content;
+  aspect-ratio: 8;
+  line-height: 1.5em;
+  color: var(--button-blue-darker);
+}
+
+#score p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: left;
 }
