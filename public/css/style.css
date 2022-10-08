@@ -1,9 +1,45 @@
 :root {
+  --delay: 300ms;
   --button-blue: hsl(194, 75%, 36%);
   --button-blue-darker: hsl(194, 75%, 20%);
+  --deep-dark-blue: hsl(194, 60%, 16%);
   --button-green: #3ecc66;
   --button-red: #f81111;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    visibility: hidden;
+    transform: scaleY(5%);
+    transform-origin: -100% 0;
+  }
+  to {
+    visibility: visible;
+    transform: scaleY(100%);
+    transform-origin: -100% 0;
+  }
+}
+
+@keyframes lateralSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 *,
 *::after,
 *::before {
@@ -25,6 +61,7 @@ body {
   margin: 0 auto;
   padding: 2rem;
   width: fit-content;
+  color: var(--button-blue-darker);
 }
 
 h1 {
@@ -33,6 +70,7 @@ h1 {
 
 h2 {
   font-size: 1.5rem;
+  font-weight: 900;
 }
 
 main {
@@ -41,12 +79,36 @@ main {
 
 main h1 {
   margin-bottom: 1em;
+  color: var(--deep-dark-blue);
+  animation: 1s fadeIn ease-in-out;
+  animation-fill-mode: backwards;
+  transform-origin: center;
+}
+
+main h2 {
+  animation: 1s fadeIn ease-in-out;
+  animation-delay: 300ms;
+  animation-fill-mode: backwards;
 }
 
 .button-wrapper {
   box-shadow: 0.25rem 0.25rem 0.5rem lightgrey;
   border-radius: 1rem;
   background: var(--button-blue-darker);
+  animation: 1s lateralSlide ease;
+  animation-fill-mode: backwards;
+}
+
+.button-wrapper:nth-child(1) {
+  animation-delay: calc(1 * var(--delay));
+}
+
+.button-wrapper:nth-child(2) {
+  animation-delay: calc(2 * var(--delay));
+}
+
+.button-wrapper:nth-child(3) {
+  animation-delay: calc(3 * var(--delay));
 }
 
 .button {
@@ -88,24 +150,14 @@ main h1 {
 
 #console {
   padding: 2rem;
-  font-family: 'Silkscreen';
+  font-family: 'Silkscreen', Arial, Helvetica, sans-serif;
+  color: var(--deep-dark-blue);
   font-size: 1.25rem;
   margin: 1.5rem 1.5rem;
   border: 1px dotted hsl(194, 75%, 10%, 50%);
   border-radius: 1rem;
   box-shadow: 0rem 0rem 1.5rem hsl(0, 0%, 83%, 80%);
-}
-
-aside {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 5.5rem;
-}
-
-#score h2 {
-  text-align: center;
-  margin-bottom: 0.5em;
+  animation: 800ms slideDown ease;
 }
 
 #score {
@@ -118,6 +170,14 @@ aside {
   aspect-ratio: 8;
   line-height: 1.5em;
   color: var(--button-blue-darker);
+  animation: 800ms slideDown ease;
+  animation-fill-mode: backwards;
+  animation-delay: calc(3 * var(--delay));
+}
+
+#score h2 {
+  text-align: center;
+  margin-bottom: 0.5em;
 }
 
 #score p {
@@ -132,4 +192,18 @@ aside {
 
 .green-font {
   color: var(--button-green);
+}
+
+@media (prefers-reduced-motion) {
+  #score h2,
+  .button-wrapper {
+    animation: none;
+  }
+
+  #console,
+  #score,
+  #computer-buttons,
+  #player-buttons {
+    animation: 1s fadeIn ease-in;
+  }
 }
