@@ -94,5 +94,3 @@ const game = () => {
 
   return score;
 };
-
-console.log(game());
