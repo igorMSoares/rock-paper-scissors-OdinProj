@@ -1,5 +1,5 @@
 :root {
-  --button-blue: #12637c;
+  --button-blue: hsl(194, 75%, 36%);
   --button-blue-darker: hsl(194, 75%, 20%);
   --button-green: #3ecc66;
   --button-red: #f81111;
@@ -45,19 +45,37 @@ main h1 {
 
 .button-wrapper {
   box-shadow: 0.25rem 0.25rem 0.5rem lightgrey;
-  border-radius: 15px;
+  border-radius: 1rem;
+  background: var(--button-blue-darker);
 }
 
 .button {
   display: block; /* centering img on span.button-wrapper */
   box-shadow: inset 0 0 1rem hsl(194deg 75% 15%);
-  border-radius: 15px;
-  cursor: pointer;
+  border-radius: 1rem;
 }
 
-/* img {
-  box-shadow: inset 0 0 1rem #0c0c0c;
-} */
+.player-btn {
+  cursor: pointer;
+  transition: 200ms transform ease-in-out;
+  padding: 0.125rem; /* will be replaced by a border on :hover*/
+  background-color: var(
+    --button-blue
+  ); /* fix white space on :active transform */
+}
+
+.player-btn:hover {
+  padding: 0px;
+  transform: scale(103%);
+  transition: 200ms transform ease-in-out;
+  transform-origin: center;
+  border: 0.125rem solid var(--button-blue-darker);
+}
+
+.player-btn:active {
+  transform: scale(95%);
+  transition: 100ms transform ease-in-out;
+}
 
 #computer-buttons,
 #player-buttons {
