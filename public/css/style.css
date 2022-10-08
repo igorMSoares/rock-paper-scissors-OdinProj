@@ -77,18 +77,68 @@ main {
   text-align: center;
 }
 
-main h1 {
-  margin-bottom: 1em;
+#welcome {
   color: var(--deep-dark-blue);
   animation: 1s fadeIn ease-in-out;
   animation-fill-mode: backwards;
-  transform-origin: center;
+}
+
+#welcome p {
+  margin-bottom: 0.5em;
+}
+
+#welcome h1 {
+  margin-bottom: 1em;
+  animation: 1s fadeIn ease-in-out;
+  animation-fill-mode: backwards;
+  animation-delay: 500ms;
+}
+
+#input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  animation: 800ms slideDown ease;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+
+input {
+  text-align: center;
+  padding: 0.5em;
+  border: 0.125rem solid var(--button-blue-darker);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1.25rem;
+  border: 0.125rem solid var(--button-blue-darker);
+  border-radius: 1rem;
+  padding: 0.25em 0.5em;
+  aspect-ratio: 6;
+  background-color: var(--button-blue);
+  color: aliceblue;
+}
+
+input:hover,
+button:hover {
+  box-shadow: 0 0 0.5rem var(--deep-dark-blue);
+  transition: 100ms all ease-in-out;
 }
 
 main h2 {
   animation: 1s fadeIn ease-in-out;
   animation-delay: 300ms;
   animation-fill-mode: backwards;
+}
+
+.hidden {
+  display: none;
 }
 
 .button-wrapper {
@@ -134,7 +184,8 @@ main h2 {
   border: 0.125rem solid var(--button-blue-darker);
 }
 
-.player-btn:active {
+.player-btn:active,
+button:active {
   transform: scale(95%);
   transition: 100ms transform ease-in-out;
 }
@@ -196,7 +247,9 @@ main h2 {
 
 @media (prefers-reduced-motion) {
   #score h2,
-  .button-wrapper {
+  .button-wrapper,
+  #welcome h1,
+  #input-wrapper {
     animation: none;
   }
 
