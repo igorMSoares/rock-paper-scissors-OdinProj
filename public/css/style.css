@@ -1,5 +1,6 @@
 :root {
   --delay: 300ms;
+  --welcome-duration: 800ms;
   --button-blue: hsl(194, 75%, 36%);
   --button-blue-darker: hsl(194, 75%, 20%);
   --deep-dark-blue: hsl(194, 60%, 16%);
@@ -79,7 +80,7 @@ main {
 
 #welcome {
   color: var(--deep-dark-blue);
-  animation: 1s fadeIn ease-in-out;
+  animation: var(--welcome-duration) fadeIn ease-in-out;
   animation-fill-mode: backwards;
 }
 
@@ -89,9 +90,9 @@ main {
 
 #welcome h1 {
   margin-bottom: 1em;
-  animation: 1s fadeIn ease-in-out;
+  animation: var(--welcome-duration) fadeIn ease-in-out;
   animation-fill-mode: backwards;
-  animation-delay: 500ms;
+  animation-delay: calc(var(--welcome-duration) / 2);
 }
 
 #input-wrapper {
@@ -99,8 +100,8 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
-  animation: 800ms slideDown ease;
-  animation-delay: 1s;
+  animation: var(--welcome-duration) slideDown ease;
+  animation-delay: var(--welcome-duration);
   animation-fill-mode: backwards;
 }
 
