@@ -42,6 +42,17 @@
   }
 }
 
+@keyframes slideUp {
+  from {
+    transform: scaleY(100%);
+    opacity: 1;
+  }
+  to {
+    transform: scaleY(0%);
+    opacity: 0;
+  }
+}
+
 *,
 *::after,
 *::before {
@@ -150,6 +161,13 @@ main h2 {
   display: none;
 }
 
+.slideUp {
+  animation: 500ms slideUp ease;
+  transform-origin: -100% 0;
+  animation-fill-mode: forwards;
+  height: 0;
+}
+
 .button-wrapper {
   box-shadow: 0.25rem 0.25rem 0.5rem lightgrey;
   border-radius: 1rem;
@@ -158,16 +176,25 @@ main h2 {
   animation-fill-mode: backwards;
 }
 
-.button-wrapper:nth-child(1) {
+.button-wrapper:nth-child(1),
+.button-wrapper:nth-child(1) .btn-hover,
+.instruct-pointer:nth-child(1) {
   animation-delay: calc(1 * var(--delay));
+  transition-delay: calc(1 * var(--delay));
 }
 
-.button-wrapper:nth-child(2) {
+.button-wrapper:nth-child(2),
+.button-wrapper:nth-child(2) .btn-hover,
+.instruct-pointer:nth-child(2) {
   animation-delay: calc(2 * var(--delay));
+  transition-delay: calc(2 * var(--delay));
 }
 
-.button-wrapper:nth-child(3) {
+.button-wrapper:nth-child(3),
+.button-wrapper:nth-child(3) .btn-hover,
+.instruct-pointer:nth-child(3) {
   animation-delay: calc(3 * var(--delay));
+  transition-delay: calc(3 * var(--delay));
 }
 
 .button {
@@ -185,7 +212,8 @@ main h2 {
   ); /* fix white space on :active transform */
 }
 
-.player-btn:hover {
+.player-btn:hover,
+.btn-hover {
   padding: 0px;
   transform: scale(103%);
   transition: 200ms transform ease-in-out;
@@ -197,6 +225,24 @@ main h2 {
 button:active {
   transform: scale(95%);
   transition: 100ms transform ease-in-out;
+}
+
+#instruct-pointers {
+  display: grid;
+  grid-auto-flow: column;
+  width: 16rem;
+  margin: 0 auto;
+}
+
+.instruct-pointer {
+  animation: 1s lateralSlide ease;
+  animation-fill-mode: backwards;
+}
+
+#instruct-msg {
+  animation: var(--welcome-duration) slideDown ease;
+  animation-delay: var(--welcome-duration);
+  animation-fill-mode: backwards;
 }
 
 #computer-buttons,

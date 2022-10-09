@@ -95,6 +95,30 @@ const game = () => {
   return score;
 };
 
+const emphasizePlayerButtons = () => {
+  const playerBtns = document.querySelectorAll('.player-btn');
+
+  window.setTimeout(() => {
+    let count = 300;
+    playerBtns.forEach(btn => {
+      btn.classList.add('btn-hover');
+
+      window.setTimeout(() => {
+        btn.classList.remove('btn-hover');
+      }, 600 + count);
+      count *= 2;
+    });
+  }, 1500);
+};
+
+const renderInstructions = () => {
+  emphasizePlayerButtons();
+
+  window.setTimeout(() => {
+    document.getElementById('instructions').classList.add('slideUp');
+  }, 3800);
+};
+
 const handleNameInput = () => {
   const nameInput = document.querySelector('#player-name-input');
   const playerName = nameInput.value;
@@ -117,6 +141,8 @@ const handleNameInput = () => {
     const hiddenElements = document.querySelectorAll('.hidden');
     document.querySelector('#welcome').classList.toggle('hidden');
     hiddenElements.forEach(el => el.classList.toggle('hidden'));
+
+    renderInstructions();
   }
 };
 
