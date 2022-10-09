@@ -203,6 +203,10 @@ let getMaxScore = maxScore();
 const endGame = player => {
   const playerName = player === 'computer' ? 'Computer' : 'You';
   printToConsole(`${playerName} won the game!`, 'msg');
+
+  const continueArea = document.getElementById('play-again');
+  continueArea.classList.add('slideDown');
+  continueArea.removeAttribute('style');
 };
 
 const incrementScore = player => {

@@ -169,6 +169,12 @@ main h2 {
   height: 0;
 }
 
+.slideDown {
+  animation: var(--welcome-duration) slideDown ease;
+  animation-delay: var(--welcome-duration);
+  animation-fill-mode: backwards;
+}
+
 .button-wrapper {
   box-shadow: 0.25rem 0.25rem 0.5rem var(--gray-shadow);
   border-radius: 1rem;
@@ -244,6 +250,10 @@ button:active {
   animation: var(--welcome-duration) slideDown ease;
   animation-delay: var(--welcome-duration);
   animation-fill-mode: backwards;
+}
+
+#play-again p:first-child {
+  margin: 1rem 0;
 }
 
 #computer-buttons,
