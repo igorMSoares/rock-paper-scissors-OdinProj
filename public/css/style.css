@@ -1,5 +1,6 @@
 :root {
   --delay: 300ms;
+  --gray-shadow: rgba(185, 183, 183, 0.8);
   --welcome-duration: 800ms;
   --button-blue: hsl(194, 75%, 36%);
   --button-blue-darker: hsl(194, 75%, 20%);
@@ -169,7 +170,7 @@ main h2 {
 }
 
 .button-wrapper {
-  box-shadow: 0.25rem 0.25rem 0.5rem lightgrey;
+  box-shadow: 0.25rem 0.25rem 0.5rem var(--gray-shadow);
   border-radius: 1rem;
   background: var(--button-blue-darker);
   animation: 1s lateralSlide ease;
@@ -265,7 +266,7 @@ button:active {
   color: var(--deep-dark-blue);
   border: 1px dotted hsl(194, 75%, 10%, 50%);
   border-radius: 1rem;
-  box-shadow: 0rem 0rem 1.5rem hsl(0, 0%, 83%, 80%);
+  box-shadow: 0rem 0rem 1.5rem var(--gray-shadow);
   height: 7.5rem;
   padding: clamp(0.5rem, 5%, 2rem);
   margin: 1.5rem clamp(0rem, 5%, 1.5rem);
