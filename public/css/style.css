@@ -208,6 +208,11 @@ button:active {
   padding: 0.5rem 0;
 }
 
+#computer-buttons .button {
+  width: 3.75rem;
+  aspect-ratio: 1;
+}
+
 #console {
   font-size: 1.5rem;
   font-family: 'Silkscreen', Arial, Helvetica, sans-serif;
