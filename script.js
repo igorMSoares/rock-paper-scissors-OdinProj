@@ -165,42 +165,29 @@ const incrementScore = player => {
     computer: 'player',
   };
 
-  let playerScore = document.querySelector(`#${player}-score .total-score`);
+  let playerScore = document.querySelector(`#${player}-header .total-score`);
   playerScore.innerText = parseInt(playerScore.innerText) + 1;
 
   playerScore = parseInt(playerScore.innerText);
   const adversaryScore = parseInt(
-    document.querySelector(`#${adversary[player]}-score .total-score`).innerText
+    document.querySelector(`#${adversary[player]}-header .total-score`)
+      .innerText
   );
 
-  const playerElements = document.querySelectorAll(
-    `#${player}-score, #${player}-header`
-  );
-  const adversaryElements = document.querySelectorAll(
-    `#${adversary[player]}-score, #${adversary[player]}-header`
+  const playerHeader = document.querySelector(`#${player}-header`);
+  const adversaryHeader = document.querySelector(
+    `#${adversary[player]}-header`
   );
 
   if (playerScore > adversaryScore) {
-    playerElements.forEach(el => {
-      el.setAttribute('class', 'green-font');
-    });
-    adversaryElements.forEach(el => {
-      el.setAttribute('class', 'red-font');
-    });
+    playerHeader.setAttribute('class', 'green-font');
+    adversaryHeader.setAttribute('class', 'red-font');
   } else if (adversaryScore > playerScore) {
-    adversaryElements.forEach(el => {
-      el.setAttribute('class', 'green-font');
-    });
-    playerElements.forEach(el => {
-      el.setAttribute('class', 'red-font');
-    });
+    adversaryHeader.setAttribute('class', 'green-font');
+    playerHeader.setAttribute('class', 'red-font');
   } else {
-    playerElements.forEach(el => {
-      el.setAttribute('class', 'blue-font');
-    });
-    adversaryElements.forEach(el => {
-      el.setAttribute('class', 'blue-font');
-    });
+    playerHeader.setAttribute('class', 'blue-font');
+    adversaryHeader.setAttribute('class', 'blue-font');
   }
 };
 
