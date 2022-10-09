@@ -95,7 +95,7 @@ const game = () => {
   return score;
 };
 
-document.querySelector('#start').addEventListener('click', _ => {
+const handleNameInput = () => {
   const nameInput = document.querySelector('#player-name-input');
   const playerName = nameInput.value;
 
@@ -118,4 +118,9 @@ document.querySelector('#start').addEventListener('click', _ => {
     document.querySelector('#welcome').classList.toggle('hidden');
     hiddenElements.forEach(el => el.classList.toggle('hidden'));
   }
-});
+};
+
+document
+  .querySelector('#player-name-input')
+  .addEventListener('change', handleNameInput);
+document.querySelector('#start').addEventListener('click', handleNameInput);
