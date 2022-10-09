@@ -219,6 +219,7 @@ button:active {
   padding: clamp(0.5rem, 5%, 2rem);
   margin: 1.5rem clamp(0rem, 5%, 1.5rem);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   animation: 800ms slideDown ease;
@@ -256,6 +257,12 @@ button:active {
 
 .green-font {
   color: var(--button-green);
+}
+
+@media (max-width: 600px) {
+  #console .initial-msg {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 430px) {
