@@ -200,13 +200,36 @@ const maxScore = (n = 5) => {
 
 let getMaxScore = maxScore();
 
+const resetScore = () => {
+  document.getElementById('player-header').classList = '';
+  document.getElementById('computer-header').classList = '';
+  document.querySelectorAll('.total-score').forEach(e => (e.innerText = '0'));
+};
+
+const playAgain = () => {
+  const continueArea = document.getElementById('play-again');
+  continueArea.setAttribute('class', 'collapse');
+  window.setTimeout(() => {
+    continueArea.setAttribute('style', 'display: none');
+  }, 300);
+
+  resetScore();
+  resetButtons();
+  initPlayerButtonsHandlers();
+  printToConsole("Let's go! Rock, Paper or Scissors?");
+};
+
 const endGame = player => {
   const playerName = player === 'computer' ? 'Computer' : 'You';
   printToConsole(`${playerName} won the game!`, 'msg');
 
   const continueArea = document.getElementById('play-again');
-  continueArea.classList.add('slideDown');
+  continueArea.setAttribute('class', 'expand');
   continueArea.removeAttribute('style');
+
+  document
+    .getElementById('play-again-btn')
+    .addEventListener('click', playAgain);
 };
 
 const incrementScore = player => {
