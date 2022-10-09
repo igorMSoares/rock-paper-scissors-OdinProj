@@ -327,8 +327,19 @@ button:active {
   #score h2,
   .button-wrapper,
   #welcome h1,
-  #input-wrapper {
+  #input-wrapper,
+  .instruct-pointer,
+  #instruct-msg {
     animation: none;
+  }
+
+  .btn-hover {
+    transition: none;
+    transform: scale(100%);
+  }
+
+  .slideUp {
+    animation-duration: 1s;
   }
 
   #console,
