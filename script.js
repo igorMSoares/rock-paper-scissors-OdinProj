@@ -47,7 +47,7 @@ const playRound = (playerChoice, computerChoice) => {
   } else if (beatedBy[lowerCaseCompChoice] === lowerCasePlayerChoice) {
     result.msg = `You Lose! ${computerChoice} beats ${playerChoice}`;
   } else {
-    result.msg = `That's a tie! You both have chosen: ${playerChoice}`;
+    result.msg = `That's a tie! You both have chosen ${playerChoice}`;
   }
 
   return result;
