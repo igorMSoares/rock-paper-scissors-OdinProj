@@ -209,14 +209,18 @@ button:active {
 }
 
 #console {
-  padding: clamp(0.5rem, 5%, 2rem);
+  font-size: 1.5rem;
   font-family: 'Silkscreen', Arial, Helvetica, sans-serif;
   color: var(--deep-dark-blue);
-  font-size: 1.5rem;
-  margin: 1.5rem clamp(0rem, 5%, 1.5rem);
   border: 1px dotted hsl(194, 75%, 10%, 50%);
   border-radius: 1rem;
   box-shadow: 0rem 0rem 1.5rem hsl(0, 0%, 83%, 80%);
+  height: 7.5rem;
+  padding: clamp(0.5rem, 5%, 2rem);
+  margin: 1.5rem clamp(0rem, 5%, 1.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation: 800ms slideDown ease;
 }
 
@@ -252,6 +256,13 @@ button:active {
 
 .green-font {
   color: var(--button-green);
+}
+
+@media (max-width: 430px) {
+  #console {
+    padding: 0 0.25rem;
+    height: clamp(8rem, 50vh, 11rem);
+  }
 }
 
 @media (prefers-reduced-motion) {
