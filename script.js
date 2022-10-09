@@ -40,9 +40,11 @@ const playRound = (playerChoice, computerChoice) => {
 
   let result = { playerChoice, computerChoice, msg: '' };
 
-  if (beatedBy[playerChoice.toLowerCase()] === computerChoice) {
+  const lowerCaseCompChoice = computerChoice.toLowerCase();
+  const lowerCasePlayerChoice = playerChoice.toLowerCase();
+  if (beatedBy[lowerCasePlayerChoice] === lowerCaseCompChoice) {
     result.msg = `You Win! ${playerChoice} beats ${computerChoice}`;
-  } else if (beatedBy[computerChoice.toLowerCase()] === playerChoice) {
+  } else if (beatedBy[lowerCaseCompChoice] === lowerCasePlayerChoice) {
     result.msg = `You Lose! ${computerChoice} beats ${playerChoice}`;
   } else {
     result.msg = `That's a tie! You both have chosen: ${playerChoice}`;
@@ -125,13 +127,76 @@ const initNameInputHandlers = () => {
   document.querySelector('#start').addEventListener('click', handleNameInput);
 };
 
+const handleWin = round => {
+  resetButtons();
+  console.log('ganhou!');
+};
+
+const handleLose = round => {
+  resetButtons();
+  console.log('Perdeu!');
+};
+
+const getImagePath = (bgColor, choice) =>
+  `./public/imgs/${choice}-${bgColor[0]}.png`;
+
+const resetButtons = () => {
+  const setBlueBackground = btn => {
+    let src = btn.getAttribute('src');
+    if (!/.+-b\.png$/.test(src)) {
+      btn.setAttribute('src', src.replace(/-[rg]\./, '-b.'));
+    }
+  };
+
+  document
+    .querySelectorAll('.player-btn')
+    .forEach(btn => setBlueBackground(btn));
+
+  document
+    .querySelectorAll('#computer-buttons img')
+    .forEach(btn => setBlueBackground(btn));
+};
+
+const handleTie = round => {
+  resetButtons();
+  document
+    .querySelector(`#${round.playerChoice}`)
+    .setAttribute('src', getImagePath('green', round.playerChoice));
+
+  document
+    .querySelector(`#computer-buttons img[alt="${round.computerChoice}"]`)
+    .setAttribute('src', getImagePath('green', round.computerChoice));
+};
+
+const printToConsole = msg => {
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const parsedMsg = msg.match(/^(.+!)\s(.+)$/);
+  p1.innerText = parsedMsg[1];
+  p2.innerText = parsedMsg[2];
+
+  const console = document.querySelector('#console');
+  console.innerHTML = '';
+  console.appendChild(p1).appendChild(p2);
+};
+
 const initPlayerButtonsHandlers = () => {
   document.querySelectorAll('.player-btn').forEach(btn => {
     btn.addEventListener('click', e => {
       const playerChoice = e.target.id;
       const computerChoice = getComputerChoice();
       const round = playRound(playerChoice, computerChoice);
-      console.log(round);
+
+      const result = round.msg.match(/(win|lose|tie)/i)[0].toLowerCase();
+
+      const resultHandlers = {
+        win: handleWin,
+        lose: handleLose,
+        tie: handleTie,
+      };
+
+      printToConsole(round.msg);
+      resultHandlers[result](round);
     });
   });
 };
