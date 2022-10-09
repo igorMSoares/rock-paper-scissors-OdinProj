@@ -127,14 +127,16 @@ const initNameInputHandlers = () => {
   document.querySelector('#start').addEventListener('click', handleNameInput);
 };
 
-const handleWin = round => {
-  resetButtons();
-  console.log('ganhou!');
-};
+const printToConsole = msg => {
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const parsedMsg = msg.match(/^(.+!)\s(.+)$/);
+  p1.innerText = parsedMsg[1];
+  p2.innerText = parsedMsg[2];
 
-const handleLose = round => {
-  resetButtons();
-  console.log('Perdeu!');
+  const console = document.querySelector('#console');
+  console.innerHTML = '';
+  console.appendChild(p1).appendChild(p2);
 };
 
 const getImagePath = (bgColor, choice) =>
@@ -157,6 +159,24 @@ const resetButtons = () => {
     .forEach(btn => setBlueBackground(btn));
 };
 
+const incrementScore = player => {
+  const element = document.querySelector(`#${player}-score .total-score`);
+  const score = parseInt(element.innerText);
+  element.innerText = score + 1;
+};
+
+const handleWin = round => {
+  resetButtons();
+  incrementScore('player');
+  console.log('ganhou!');
+};
+
+const handleLose = round => {
+  resetButtons();
+  incrementScore('computer');
+  console.log('Perdeu!');
+};
+
 const handleTie = round => {
   resetButtons();
   document
@@ -166,18 +186,6 @@ const handleTie = round => {
   document
     .querySelector(`#computer-buttons img[alt="${round.computerChoice}"]`)
     .setAttribute('src', getImagePath('green', round.computerChoice));
-};
-
-const printToConsole = msg => {
-  const p1 = document.createElement('p');
-  const p2 = document.createElement('p');
-  const parsedMsg = msg.match(/^(.+!)\s(.+)$/);
-  p1.innerText = parsedMsg[1];
-  p2.innerText = parsedMsg[2];
-
-  const console = document.querySelector('#console');
-  console.innerHTML = '';
-  console.appendChild(p1).appendChild(p2);
 };
 
 const initPlayerButtonsHandlers = () => {
