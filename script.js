@@ -47,7 +47,7 @@ const playRound = (playerChoice, computerChoice) => {
   } else if (beatedBy[lowerCaseCompChoice] === lowerCasePlayerChoice) {
     result.msg = `You Lose! ${computerChoice} beats ${playerChoice}`;
   } else {
-    result.msg = `That's a tie! You both have chosen ${playerChoice}`;
+    result.msg = `It's a tie! You both have chosen ${playerChoice}`;
   }
 
   return result;
@@ -215,8 +215,8 @@ const handleLose = round => {
 };
 
 const handleTie = round => {
-  changeImage('player', 'green', round.playerChoice);
-  changeImage('computer', 'green', round.computerChoice);
+  changeImage('player', 'red', round.playerChoice);
+  changeImage('computer', 'red', round.computerChoice);
 };
 
 const initPlayerButtonsHandlers = () => {
