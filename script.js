@@ -160,32 +160,76 @@ const resetButtons = () => {
 };
 
 const incrementScore = player => {
-  const element = document.querySelector(`#${player}-score .total-score`);
-  const score = parseInt(element.innerText);
-  element.innerText = score + 1;
+  const adversary = {
+    player: 'computer',
+    computer: 'player',
+  };
+
+  let playerScore = document.querySelector(`#${player}-score .total-score`);
+  playerScore.innerText = parseInt(playerScore.innerText) + 1;
+
+  playerScore = parseInt(playerScore.innerText);
+  const adversaryScore = parseInt(
+    document.querySelector(`#${adversary[player]}-score .total-score`).innerText
+  );
+
+  const playerElements = document.querySelectorAll(
+    `#${player}-score, #${player}-header`
+  );
+  const adversaryElements = document.querySelectorAll(
+    `#${adversary[player]}-score, #${adversary[player]}-header`
+  );
+
+  if (playerScore > adversaryScore) {
+    playerElements.forEach(el => {
+      el.setAttribute('class', 'green-font');
+    });
+    adversaryElements.forEach(el => {
+      el.setAttribute('class', 'red-font');
+    });
+  } else if (adversaryScore > playerScore) {
+    adversaryElements.forEach(el => {
+      el.setAttribute('class', 'green-font');
+    });
+    playerElements.forEach(el => {
+      el.setAttribute('class', 'red-font');
+    });
+  } else {
+    playerElements.forEach(el => {
+      el.setAttribute('class', 'blue-font');
+    });
+    adversaryElements.forEach(el => {
+      el.setAttribute('class', 'blue-font');
+    });
+  }
+};
+
+const changeImage = (player, color, choice) => {
+  let element;
+  if (player === 'player') {
+    element = document.querySelector(`#${choice}`);
+  } else if (player === 'computer') {
+    element = document.querySelector(`#computer-buttons img[alt="${choice}"]`);
+  }
+
+  element.setAttribute('src', getImagePath(color, choice));
 };
 
 const handleWin = round => {
-  resetButtons();
   incrementScore('player');
-  console.log('ganhou!');
+  changeImage('player', 'green', round.playerChoice);
+  changeImage('computer', 'red', round.computerChoice);
 };
 
 const handleLose = round => {
-  resetButtons();
   incrementScore('computer');
-  console.log('Perdeu!');
+  changeImage('player', 'red', round.playerChoice);
+  changeImage('computer', 'green', round.computerChoice);
 };
 
 const handleTie = round => {
-  resetButtons();
-  document
-    .querySelector(`#${round.playerChoice}`)
-    .setAttribute('src', getImagePath('green', round.playerChoice));
-
-  document
-    .querySelector(`#computer-buttons img[alt="${round.computerChoice}"]`)
-    .setAttribute('src', getImagePath('green', round.computerChoice));
+  changeImage('player', 'green', round.playerChoice);
+  changeImage('computer', 'green', round.computerChoice);
 };
 
 const initPlayerButtonsHandlers = () => {
@@ -204,6 +248,7 @@ const initPlayerButtonsHandlers = () => {
       };
 
       printToConsole(round.msg);
+      resetButtons();
       resultHandlers[result](round);
     });
   });
