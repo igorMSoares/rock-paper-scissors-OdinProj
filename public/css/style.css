@@ -5,7 +5,8 @@
   --button-blue-darker: hsl(194, 75%, 20%);
   --deep-dark-blue: hsl(194, 60%, 16%);
   --button-green: #3ecc66;
-  --button-red: hsl(0, 89%, 67%, 70%);
+  --button-red: hsl(0, 89%, 67%);
+  --input-error: hsl(0, 89%, 67%, 70%);
 }
 
 @keyframes fadeIn {
@@ -135,9 +136,8 @@ button:hover {
 }
 
 .blink {
-  /* animation: 200ms fadeIn ease-in-out; */
   transition: 300ms all ease;
-  background: var(--button-red);
+  background: var(--input-error);
 }
 
 main h2 {
