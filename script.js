@@ -1,6 +1,6 @@
 /** Creates an array with n times (10 by default) each option, in random order */
 const shuffleOptions = (n = 10) => {
-  const options = ['rock', 'paper', 'scissors'];
+  const options = ['Rock', 'Paper', 'Scissors'];
   let temp = [...options];
   const shuffled = [];
   let idx = -1;
@@ -38,16 +38,14 @@ const playRound = (playerChoice, computerChoice) => {
     scissors: 'paper',
   };
 
-  playerChoice = playerChoice.toLowerCase();
-  computerChoice = computerChoice.toLowerCase();
-  let result = '';
+  let result = { playerChoice, computerChoice, msg: '' };
 
-  if (beatedBy[playerChoice] === computerChoice) {
-    result = `You Win! ${playerChoice} beats ${computerChoice}`;
-  } else if (beatedBy[computerChoice] === playerChoice) {
-    result = `You Lose! ${computerChoice} beats ${playerChoice}`;
+  if (beatedBy[playerChoice.toLowerCase()] === computerChoice) {
+    result.msg = `You Win! ${playerChoice} beats ${computerChoice}`;
+  } else if (beatedBy[computerChoice.toLowerCase()] === playerChoice) {
+    result.msg = `You Lose! ${computerChoice} beats ${playerChoice}`;
   } else {
-    result = `That's a tie! You both have chosen: ${playerChoice}`;
+    result.msg = `That's a tie! You both have chosen: ${playerChoice}`;
   }
 
   return result;
@@ -120,7 +118,27 @@ const handleNameInput = () => {
   }
 };
 
-document
-  .querySelector('#player-name-input')
-  .addEventListener('change', handleNameInput);
-document.querySelector('#start').addEventListener('click', handleNameInput);
+const initNameInputHandlers = () => {
+  document
+    .querySelector('#player-name-input')
+    .addEventListener('change', handleNameInput);
+  document.querySelector('#start').addEventListener('click', handleNameInput);
+};
+
+const initPlayerButtonsHandlers = () => {
+  document.querySelectorAll('.player-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const playerChoice = e.target.id;
+      const computerChoice = getComputerChoice();
+      const round = playRound(playerChoice, computerChoice);
+      console.log(round);
+    });
+  });
+};
+
+const start = () => {
+  initNameInputHandlers();
+  initPlayerButtonsHandlers();
+};
+
+start();
