@@ -211,7 +211,7 @@ const playAgain = () => {
   continueArea.setAttribute('class', 'collapse');
   window.setTimeout(() => {
     continueArea.setAttribute('style', 'display: none');
-  }, 250);
+  }, 200);
 
   resetScore();
   resetButtons();
@@ -225,7 +225,9 @@ const endGame = player => {
 
   const continueArea = document.getElementById('play-again');
   continueArea.setAttribute('class', 'expand');
-  continueArea.removeAttribute('style');
+  window.setTimeout(() => {
+    continueArea.removeAttribute('style');
+  }, 400);
 
   document
     .getElementById('play-again-btn')
