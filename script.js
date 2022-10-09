@@ -211,7 +211,7 @@ const playAgain = () => {
   continueArea.setAttribute('class', 'collapse');
   window.setTimeout(() => {
     continueArea.setAttribute('style', 'display: none');
-  }, 300);
+  }, 250);
 
   resetScore();
   resetButtons();
