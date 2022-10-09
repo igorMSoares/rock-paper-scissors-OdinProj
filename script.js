@@ -232,7 +232,7 @@ const endGame = player => {
   continueArea.setAttribute('class', 'expand');
   window.setTimeout(() => {
     continueArea.removeAttribute('style');
-  }, 400);
+  }, 500);
 
   document
     .getElementById('play-again-btn')
