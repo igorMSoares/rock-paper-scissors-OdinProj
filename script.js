@@ -140,7 +140,7 @@ const printToConsole = msg => {
 };
 
 const getImagePath = (bgColor, choice) =>
-  `./public/imgs/${choice}-${bgColor[0]}.png`;
+  `./public/imgs/${choice.toLowerCase()}-${bgColor[0]}.png`;
 
 const resetButtons = () => {
   const setBlueBackground = btn => {
