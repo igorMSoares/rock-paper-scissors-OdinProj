@@ -153,16 +153,23 @@ const initNameInputHandlers = () => {
   document.querySelector('#start').addEventListener('click', handleNameInput);
 };
 
-const printToConsole = msg => {
-  const p1 = document.createElement('p');
-  const p2 = document.createElement('p');
-  const parsedMsg = msg.match(/^(.+!)\s(.+)$/);
-  p1.innerText = parsedMsg[1];
-  p2.innerText = parsedMsg[2];
-
+const printToConsole = (msg, type = 'play') => {
   const console = document.querySelector('#console');
   console.innerHTML = '';
-  console.appendChild(p1).appendChild(p2);
+
+  if (type === 'play') {
+    const p1 = document.createElement('p');
+    const p2 = document.createElement('p');
+    const parsedMsg = msg.match(/^(.+!)\s(.+)$/);
+    p1.innerText = parsedMsg[1];
+    p2.innerText = parsedMsg[2];
+
+    console.appendChild(p1).appendChild(p2);
+  } else if (type === 'msg') {
+    const p = document.createElement('p');
+    p.innerText = msg;
+    console.appendChild(p);
+  }
 };
 
 const getImagePath = (bgColor, choice) =>
@@ -185,6 +192,19 @@ const resetButtons = () => {
     .forEach(btn => setBlueBackground(btn));
 };
 
+const maxScore = (n = 5) => {
+  const max = n;
+
+  return () => max;
+};
+
+let getMaxScore = maxScore();
+
+const endGame = player => {
+  const playerName = player === 'computer' ? 'Computer' : 'You';
+  printToConsole(`${playerName} won the game!`, 'msg');
+};
+
 const incrementScore = player => {
   const adversary = {
     player: 'computer',
@@ -193,8 +213,8 @@ const incrementScore = player => {
 
   let playerScore = document.querySelector(`#${player}-header .total-score`);
   playerScore.innerText = parseInt(playerScore.innerText) + 1;
-
   playerScore = parseInt(playerScore.innerText);
+
   const adversaryScore = parseInt(
     document.querySelector(`#${adversary[player]}-header .total-score`)
       .innerText
@@ -214,6 +234,14 @@ const incrementScore = player => {
   } else {
     playerHeader.setAttribute('class', 'blue-font');
     adversaryHeader.setAttribute('class', 'blue-font');
+  }
+
+  if (playerScore === getMaxScore()) {
+    document.querySelectorAll('.player-btn').forEach(btn => {
+      btn.removeEventListener('click', handlePlayerBtnClick);
+    });
+
+    window.setTimeout(() => endGame(player), 2000);
   }
 };
 
@@ -245,25 +273,27 @@ const handleTie = round => {
   changeImage('computer', 'red', round.computerChoice);
 };
 
+const handlePlayerBtnClick = event => {
+  const playerChoice = event.target.id;
+  const computerChoice = getComputerChoice();
+  const round = playRound(playerChoice, computerChoice);
+
+  const result = round.msg.match(/(win|lose|tie)/i)[0].toLowerCase();
+
+  const resultHandlers = {
+    win: handleWin,
+    lose: handleLose,
+    tie: handleTie,
+  };
+
+  printToConsole(round.msg);
+  resetButtons();
+  resultHandlers[result](round);
+};
+
 const initPlayerButtonsHandlers = () => {
   document.querySelectorAll('.player-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const playerChoice = e.target.id;
-      const computerChoice = getComputerChoice();
-      const round = playRound(playerChoice, computerChoice);
-
-      const result = round.msg.match(/(win|lose|tie)/i)[0].toLowerCase();
-
-      const resultHandlers = {
-        win: handleWin,
-        lose: handleLose,
-        tie: handleTie,
-      };
-
-      printToConsole(round.msg);
-      resetButtons();
-      resultHandlers[result](round);
-    });
+    btn.addEventListener('click', handlePlayerBtnClick);
   });
 };
 
