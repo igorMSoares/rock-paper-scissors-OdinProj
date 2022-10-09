@@ -114,8 +114,13 @@ const emphasizePlayerButtons = () => {
 const renderInstructions = () => {
   emphasizePlayerButtons();
 
+  const instructionsArea = document.getElementById('instructions');
   window.setTimeout(() => {
-    document.getElementById('instructions').classList.add('slideUp');
+    instructionsArea.classList.add('collapse');
+    window.setTimeout(
+      () => instructionsArea.setAttribute('style', 'display: none'),
+      250
+    );
   }, 3800);
 };
 
