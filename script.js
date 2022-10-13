@@ -325,7 +325,7 @@ const handleTie = round => {
 
 const handlePlayerBtnClick = event => {
   const playerChoice = validateChoice(event.target.id);
-  const computerChoice = getComputerChoice();
+  const computerChoice = validateChoice(getComputerChoice());
   const round = playRound(playerChoice, computerChoice);
 
   const result = round.msg.match(/(win|lose|tie)/i)[0].toLowerCase();
