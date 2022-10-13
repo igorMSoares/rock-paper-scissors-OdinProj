@@ -53,6 +53,22 @@ const playRound = (playerChoice, computerChoice) => {
   return result;
 };
 
+const validateChoice = choice => {
+  const validChoices = {
+    rock: true,
+    paper: true,
+    scissors: true,
+  };
+
+  if (validChoices[choice.toLowerCase()]) {
+    return choice;
+  } else {
+    throw new ReferenceError(
+      `${choice} is not a valid choice. Expecting 'Rock', 'Paper' or 'Scissors' instead.`
+    );
+  }
+};
+
 const getPlayerChoice = () => {
   const validChoices = {
     rock: true,
@@ -308,7 +324,7 @@ const handleTie = round => {
 };
 
 const handlePlayerBtnClick = event => {
-  const playerChoice = event.target.id;
+  const playerChoice = validateChoice(event.target.id);
   const computerChoice = getComputerChoice();
   const round = playRound(playerChoice, computerChoice);
 
