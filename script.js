@@ -69,48 +69,6 @@ const validateChoice = choice => {
   }
 };
 
-const getPlayerChoice = () => {
-  const validChoices = {
-    rock: true,
-    paper: true,
-    scissors: true,
-  };
-  let playerChoice = prompt('Choose your move:').toLowerCase();
-  while (!(playerChoice in validChoices)) {
-    playerChoice = prompt(
-      'Invalid option.\nChoose rock, paper or scissors:'
-    ).toLowerCase();
-  }
-
-  return playerChoice;
-};
-
-const game = () => {
-  const score = {
-    player: 0,
-    computer: 0,
-  };
-  let result = undefined;
-  let playerChoice = undefined;
-  let computerChoice = undefined;
-
-  for (let i = 1; i <= 5; i++) {
-    playerChoice = getPlayerChoice();
-    computerChoice = getComputerChoice();
-    result = playRound(playerChoice, computerChoice);
-
-    if (result.match(/win/i)) {
-      score.player++;
-    } else if (result.match(/lose/i)) {
-      score.computer++;
-    }
-
-    console.log(result);
-  }
-
-  return score;
-};
-
 const emphasizePlayerButtons = () => {
   const playerBtns = document.querySelectorAll('.player-btn');
 
