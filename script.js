@@ -29,7 +29,7 @@ const chooseFromShuffled = () => {
   };
 };
 
-const getComputerChoice = chooseFromShuffled();
+let getComputerChoice = chooseFromShuffled();
 
 const playRound = (playerChoice, computerChoice) => {
   const beatedBy = {
@@ -194,6 +194,7 @@ const playAgain = () => {
 
   resetScore();
   resetButtons();
+  getComputerChoice = chooseFromShuffled(); // Reshuffle options list
   initPlayerButtonsHandlers();
   printToConsole("Let's go! Rock, Paper or Scissors?");
 };
