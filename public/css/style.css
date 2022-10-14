@@ -22,12 +22,12 @@
 @keyframes slideDown {
   from {
     visibility: hidden;
-    transform: scaleY(5%);
+    transform: scaleY(0.05);
     transform-origin: -100% 0;
   }
   to {
     visibility: visible;
-    transform: scaleY(100%);
+    transform: scaleY(1);
     transform-origin: -100% 0;
   }
 }
@@ -45,11 +45,11 @@
 
 @keyframes slideUp {
   from {
-    transform: scaleY(100%);
+    transform: scaleY(1);
     opacity: 1;
   }
   to {
-    transform: scaleY(0%);
+    transform: scaleY(0);
     opacity: 0;
   }
 }
@@ -220,8 +220,8 @@ main h2 {
 
 .player-btn:hover,
 .btn-hover {
-  padding: 0px;
-  transform: scale(103%);
+  padding: 0;
+  transform: scale(1.03);
   transition: 200ms transform ease-in-out;
   transform-origin: center;
   border: 0.125rem solid var(--button-blue-darker);
@@ -229,7 +229,7 @@ main h2 {
 
 .player-btn:active,
 button:active {
-  transform: scale(95%);
+  transform: scale(0.95);
   transition: 100ms transform ease-in-out;
 }
 
@@ -292,7 +292,7 @@ button:active {
 
 #computer-buttons .button {
   width: 3.75rem;
-  aspect-ratio: 1;
+  height: auto;
 }
 
 #console {
@@ -301,7 +301,7 @@ button:active {
   color: var(--deep-dark-blue);
   border: 1px dotted hsl(194, 75%, 10%, 50%);
   border-radius: 1rem;
-  box-shadow: 0rem 0rem 1.5rem var(--gray-shadow);
+  box-shadow: 0 0 1.5rem var(--gray-shadow);
   height: 7.5rem;
   padding: clamp(0.5rem, 5%, 2rem);
   margin: 1.5rem clamp(0rem, 5%, 1.5rem);
@@ -345,7 +345,7 @@ button:active {
 
   .btn-hover {
     transition: none;
-    transform: scale(100%);
+    transform: scale(1);
   }
 
   .slideUp,
