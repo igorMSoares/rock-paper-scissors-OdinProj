@@ -74,7 +74,7 @@ const validateChoice = choice => {
  * jumping with sidebar occasionally showing and hiding on dynamic content rendering
  */
 const displaySideBar = () => {
-  const mainHgt = document.querySelector('main').clientHeight;
+  const bodyHgt = document.querySelector('body').clientHeight;
   const windowHgt = window.innerHeight;
 
   const playAgainArea = document.getElementById('play-again');
@@ -82,11 +82,7 @@ const displaySideBar = () => {
   const playAgainHgt = playAgainArea.clientHeight;
   playAgainArea.setAttribute('style', 'display: none');
 
-  console.log({ playAgainHgt });
-  console.log({ mainHgt });
-  console.log({ windowHgt });
-  if (mainHgt >= windowHgt || mainHgt + playAgainHgt >= windowHgt) {
-    console.log(true);
+  if (bodyHgt > windowHgt || bodyHgt + playAgainHgt >= windowHgt) {
     document.querySelector('body').setAttribute('style', 'overflow-y: scroll');
   }
 };
