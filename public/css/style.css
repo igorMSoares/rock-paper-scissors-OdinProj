@@ -212,7 +212,7 @@ main h2 {
 .player-btn {
   cursor: pointer;
   transition: 200ms transform ease-in-out;
-  padding: 0.125rem; /* will be replaced by a border on :hover*/
+  padding: 0.1rem; /* will be replaced by a border on :hover*/
   background-color: var(
     --button-blue
   ); /* fix white space on :active transform */
@@ -224,7 +224,7 @@ main h2 {
   transform: scale(1.03);
   transition: 200ms transform ease-in-out;
   transform-origin: center;
-  border: 0.125rem solid var(--button-blue-darker);
+  border: 0.1rem solid var(--button-blue-darker);
 }
 
 .player-btn:active,
