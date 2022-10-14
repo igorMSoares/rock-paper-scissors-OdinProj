@@ -69,6 +69,28 @@ const validateChoice = choice => {
   }
 };
 
+/** calculates if <main> will overflow when displaying #instructions or #play-again
+ * if it overflows, set the siderbar to be always showing to prevent layout from
+ * jumping with sidebar occasionally showing and hiding on dynamic content rendering
+ */
+const displaySideBar = () => {
+  const mainHgt = document.querySelector('main').clientHeight;
+  const windowHgt = window.innerHeight;
+
+  const playAgainArea = document.getElementById('play-again');
+  playAgainArea.setAttribute('style', 'display: box');
+  const playAgainHgt = playAgainArea.clientHeight;
+  playAgainArea.setAttribute('style', 'display: none');
+
+  console.log({ playAgainHgt });
+  console.log({ mainHgt });
+  console.log({ windowHgt });
+  if (mainHgt >= windowHgt || mainHgt + playAgainHgt >= windowHgt) {
+    console.log(true);
+    document.querySelector('body').setAttribute('style', 'overflow-y: scroll');
+  }
+};
+
 const emphasizePlayerButtons = () => {
   const playerBtns = document.querySelectorAll('.player-btn');
 
@@ -121,6 +143,7 @@ const handleNameInput = () => {
     document.querySelector('#welcome').classList.toggle('hidden');
     hiddenElements.forEach(el => el.classList.toggle('hidden'));
 
+    displaySideBar();
     renderInstructions();
   }
 };
